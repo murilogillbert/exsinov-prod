@@ -8,6 +8,7 @@
 # =============================================================================
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"   # caminho absoluto deste script
 WEBROOT="/var/www/exsinov"
 NGINX_CONF="/etc/nginx/sites-available/exsinov"
 APP_DIR="/root/exsinov"
@@ -71,7 +72,7 @@ chmod -R 755 "$WEBROOT"
 
 # ── 7. Nginx ─────────────────────────────────────────────────────────────────
 echo "▶ [7/9] Configurando Nginx..."
-cp "$(dirname "$0")/nginx/exsinov.conf" "$NGINX_CONF"
+cp "$SCRIPT_DIR/nginx/exsinov.conf" "$NGINX_CONF"
 ln -sf "$NGINX_CONF" /etc/nginx/sites-enabled/exsinov
 rm -f /etc/nginx/sites-enabled/default
 
