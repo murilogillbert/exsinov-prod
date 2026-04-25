@@ -1,0 +1,19 @@
+# ─────────────────────────────────────────────────────────────
+# Cloudflare Tunnel — Exsinov
+# Substitua TUNNEL_ID pelo ID gerado em: cloudflared tunnel create exsinov
+# ─────────────────────────────────────────────────────────────
+
+tunnel: TUNNEL_ID
+credentials-file: /root/.cloudflared/TUNNEL_ID.json
+
+ingress:
+  # domínio raiz
+  - hostname: exsinov.com
+    service: http://localhost:80
+
+  # subdomínio www
+  - hostname: www.exsinov.com
+    service: http://localhost:80
+
+  # fallback obrigatório (cloudflared exige)
+  - service: http_status:404
